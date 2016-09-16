@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    signingConfigs {
+        sign {
+            keyAlias '101010'
+            keyPassword '101010'
+            storeFile file('../test.jks')
+            storePassword '101010'
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.csq.thesceneryalong"
+        minSdkVersion 14
+        targetSdkVersion 23
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.sign
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles 'proguard-project.txt'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.github.zhaokaiqiang.klog:library:1.5.0'
+    compile project(':lib_map_gaode')
+    compile project(':tsaCommonLib')
+}
